@@ -16,9 +16,17 @@ public class Frog : Monster
 
     void Update()
     {
-        if (playerInRange && !doingAction)
+        if (playerInRange)
         {
-            Lunge();
+            if (state == State.WaitingToLunge)
+            {
+                sprite.flipX = player.transform.position.x > transform.position.x;
+            }
+
+            if (!doingAction)
+            {
+                Lunge();
+            }
         }
     }
 
