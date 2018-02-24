@@ -30,13 +30,10 @@ public class LightOrb : MonoBehaviour
             timeLeft -= Time.deltaTime;
             yield return 0;
         }
+        // Play the fade out animation.
+        GetComponent<Animator>().SetBool("die", true);
+        // Wait for the trail particles to fade out before killing the object.
         timeLeft = 1.0f;
-        // Disable the LightOrb's sprite renderer.
-        transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-        // Disable Sparkle emission
-        ParticleSystem.EmissionModule em = transform.GetChild(1).GetComponent<ParticleSystem>().emission;
-        em.enabled = false;
-        // Wait for the trail particles to stop before killing the object.
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
