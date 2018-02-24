@@ -12,6 +12,9 @@ public class Frog : Monster
     public float timeBeforeJump;
     public float lungeDuration;
     public float length;
+
+    public AnimationCurve easeCurve;
+
     State state = State.Idle;
 
     void Update()
@@ -47,6 +50,7 @@ public class Frog : Monster
         ChangeState(State.WaitingToLunge);
         yield return new WaitForSeconds(timeBeforeJump);
         Tween myTween = transform.DOMove(transform.position + length * (player.transform.position - transform.position).normalized, lungeDuration);
+        myTween.SetEase(easeCurve);
         ChangeState(State.Lunging);
         yield return myTween.WaitForCompletion();
         ChangeState(State.Idle);
