@@ -37,6 +37,7 @@ public class LightOrb : MonoBehaviour
         while (timeLeft > 0)
         {
             timeLeft -= Time.deltaTime;
+            transform.position = magnetizeTo.position;
             yield return 0;
         }
         Destroy(gameObject);
