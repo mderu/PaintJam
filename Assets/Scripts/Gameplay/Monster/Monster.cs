@@ -17,6 +17,8 @@ public abstract class Monster : MonoBehaviour
 
     protected Player player;
 
+    public GameObject lightOrbPrefab;
+
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -41,6 +43,7 @@ public abstract class Monster : MonoBehaviour
     public virtual void Die()
     {
         // TODO: do die stuff
+        Instantiate(lightOrbPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 

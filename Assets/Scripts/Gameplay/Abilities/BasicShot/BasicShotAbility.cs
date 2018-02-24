@@ -8,8 +8,12 @@ public class BasicShotAbility : Ability
 
     public override void Activate()
     {
-        BasicShot shot = Instantiate(shotPrefab, Player.instance.transform.position, Quaternion.identity).GetComponent<BasicShot>();
-        StartCoroutine(shot.Shoot(Player.instance));
+        if (canActivate)
+        {
+            BasicShot shot = Instantiate(shotPrefab, Player.instance.transform.position, Quaternion.identity).GetComponent<BasicShot>();
+            StartCoroutine(shot.Shoot(Player.instance));
+            StartCoroutine(Cooldown());
+        }
     }
 
     public override void Deactivate()

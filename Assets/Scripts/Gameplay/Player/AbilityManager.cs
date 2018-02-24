@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    public Ability ability0;
-    public Ability ability1;
+    Ability ability0;
+    Ability ability1;
+
+    void Start()
+    {
+        ability0 = GetComponent<BasicShotAbility>();
+    }
 
     void Update()
     {
