@@ -16,12 +16,13 @@ public class Monster : MonoBehaviour {
     [HideInInspector]
     public bool playerInRange;
     private bool doingAction;
-    
+
+    public float length;
 
     private void Awake()
     {
         myBody = GetComponent<Rigidbody2D>();
-        playerInRange = false;
+        playerInRange = true;
         doingAction = false;
     }
 
@@ -47,9 +48,9 @@ public class Monster : MonoBehaviour {
 
     public IEnumerator DoLunge()
     {
-        SetDoingAction(false);
+        SetDoingAction(true);
         yield return new WaitForSeconds(timeBeforeJump);
-        transform.DOMove(target.position, speed).OnComplete(()=>SetDoingAction(true)); ;
+        transform.DOMove(myTransform.position + length * (target.position - myTransform.position).normalized, speed).OnComplete(()=>SetDoingAction(false)); ;
 
     }
 

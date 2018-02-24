@@ -13,12 +13,6 @@ public class PlayerDetection: MonoBehaviour
     void Start()
     {
         radius = transform.GetComponent<CircleCollider2D>().radius;
-        //if (gameObject.layer == LayerMask.GetMask("Player"))
-        //{
-        //    member.playerInRange =
-        //    Physics2D.OverlapCircle(transform.position, radius,
-        //        LayerMask.GetMask("Player")) != null;
-        //}
     }
 
     // Update is called once per frame
@@ -29,7 +23,7 @@ public class PlayerDetection: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameObject.layer == LayerMask.GetMask("Player"))
+        if (collision.gameObject.layer == LayerMask.GetMask("Player"))
         {
             member.PlayerInRange();
         }
@@ -37,7 +31,7 @@ public class PlayerDetection: MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(gameObject.layer == LayerMask.GetMask("Player"))
+        if(collision.gameObject.layer == LayerMask.GetMask("Player"))
         {
             member.PlayerOutRange();
         }
