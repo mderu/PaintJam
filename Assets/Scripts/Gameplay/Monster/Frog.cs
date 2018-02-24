@@ -5,16 +5,28 @@ using DG.Tweening;
 
 public class Frog : Monster
 {
+    enum State { Idle, WaitingToLunge, Lunging }
+
     //public float stoppingDistance;
+    public float lungeCooldown;
     public float timeBeforeJump;
-    public float speed;
+    public float lungeDuration;
     public float length;
+    State state = State.Idle;
 
     void Update()
     {
-        if (playerInRange && !doingAction)
+        if (playerInRange)
         {
-            Lunge();
+            if (state == State.WaitingToLunge)
+            {
+                sprite.flipX = player.transform.position.x > transform.position.x;
+            }
+
+            if (!doingAction)
+            {
+                Lunge();
+            }
         }
     }
 
@@ -23,15 +35,22 @@ public class Frog : Monster
         StartCoroutine(DoLunge());
     }
 
-    public IEnumerator DoLunge()
+    void ChangeState(State newState)
+    {
+        state = newState;
+        anim.SetInteger("State", (int)newState);
+    }
+
+    IEnumerator DoLunge()
     {
         doingAction = true;
+        ChangeState(State.WaitingToLunge);
         yield return new WaitForSeconds(timeBeforeJump);
-        Tween myTween = transform.DOMove(transform.position + length * (player.transform.position - transform.position).normalized, speed);
-
+        Tween myTween = transform.DOMove(transform.position + length * (player.transform.position - transform.position).normalized, lungeDuration);
+        ChangeState(State.Lunging);
         yield return myTween.WaitForCompletion();
-
+        ChangeState(State.Idle);
+        yield return new WaitForSeconds(lungeCooldown);
         doingAction = false;
-
     }
 }
