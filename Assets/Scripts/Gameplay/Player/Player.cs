@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    void Update()
+    public float maxShine = 100f;
+
+    [SerializeField]
+    float _shine = 10f;
+    public float shine
     {
-        
+        get { return _shine; }
+
+        set
+        {
+            if (value < 0)
+            {
+                Die();
+            }
+            _shine = Mathf.Clamp(value, 0, maxShine);
+        }
+    }
+
+    void Die()
+    {
+        // TODO : do die stuff
     }
 }
