@@ -15,6 +15,7 @@ public abstract class Monster : MonoBehaviour
 
     protected Player player;
     protected Animator anim;
+    [SerializeField]
     protected SpriteRenderer sprite;
 
     public GameObject lightOrbPrefab;
@@ -23,7 +24,6 @@ public abstract class Monster : MonoBehaviour
     {
         player = Player.instance;
         anim = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
         playerInRange = false;
         doingAction = false;
