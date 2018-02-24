@@ -28,14 +28,9 @@ public class Frog : Monster
 
             if (!doingAction)
             {
-                Lunge();
+                StartCoroutine(DoLunge());
             }
         }
-    }
-
-    public void Lunge()
-    {
-        StartCoroutine(DoLunge());
     }
 
     void ChangeState(State newState)

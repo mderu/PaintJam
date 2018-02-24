@@ -20,7 +20,7 @@ public abstract class Monster : MonoBehaviour
 
     public GameObject lightOrbPrefab;
 
-    void Start()
+    protected virtual void Start()
     {
         player = Player.instance;
         anim = GetComponent<Animator>();

@@ -11,7 +11,7 @@ public class BasicShotAbility : Ability
         if (canActivate)
         {
             BasicShot shot = Instantiate(shotPrefab).GetComponent<BasicShot>();
-            shot.Shoot(Player.instance);
+            shot.Shoot();
             StartCoroutine(Cooldown());
         }
     }
