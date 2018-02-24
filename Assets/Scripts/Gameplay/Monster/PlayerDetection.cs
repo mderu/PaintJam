@@ -6,13 +6,11 @@ public class PlayerDetection: MonoBehaviour
 {
 
     public Monster member;
-
-    private float radius;
-
+    
     // Use this for initialization
     void Start()
     {
-        radius = transform.GetComponent<CircleCollider2D>().radius;
+    
     }
 
     // Update is called once per frame
@@ -23,17 +21,19 @@ public class PlayerDetection: MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.GetMask("Player"))
+        if (1 << collision.gameObject.layer == LayerMask.GetMask("Player"))
         {
-            member.PlayerInRange();
+            Debug.Log("[pp[");
+            member.PlayerInRange(collision.GetComponent<Player>());
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == LayerMask.GetMask("Player"))
+        if(1 << collision.gameObject.layer == LayerMask.GetMask("Player"))
         {
-            member.PlayerOutRange();
+            member.PlayerOutRange(collision.GetComponent<Player>());
+
         }
     }
 

@@ -38,8 +38,8 @@ GameObject:
   - component: {fileID: 4764356644376394}
   - component: {fileID: 212003012656689382}
   - component: {fileID: 61127927558573198}
-  - component: {fileID: 114636215210857220}
   - component: {fileID: 50160235990573340}
+  - component: {fileID: 114261278410897900}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Untagged
@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe06d9c90f39d44fb7c56cf0b3a8976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  member: {fileID: 114636215210857220}
---- !u!114 &114636215210857220
+  member: {fileID: 0}
+--- !u!114 &114261278410897900
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -154,13 +154,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1692113477047704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43f7100d0385ab64ea9b92de81ccb9de, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e7ef737d717b594abc5d966d64d7f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   timeBeforeJump: 1
-  target: {fileID: 0}
-  myTransform: {fileID: 4764356644376394}
   playerInRange: 0
   length: 2
 --- !u!212 &212003012656689382

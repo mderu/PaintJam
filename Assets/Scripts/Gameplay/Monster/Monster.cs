@@ -7,28 +7,23 @@ public class Monster : MonoBehaviour {
 
     public float speed;
     //public float stoppingDistance;
-    private Rigidbody2D myBody;
     public float timeBeforeJump;
-
-    public Transform target;
-    public Transform myTransform;
 
     [HideInInspector]
     public bool playerInRange;
     private bool doingAction;
 
     public float length;
+    private Player player;
 
     private void Awake()
     {
-        myBody = GetComponent<Rigidbody2D>();
-        playerInRange = true;
+        playerInRange = false;
         doingAction = false;
     }
 
     // Use this for initialization
     void Start () {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     
 	}
 	
@@ -50,7 +45,7 @@ public class Monster : MonoBehaviour {
     {
         SetDoingAction(true);
         yield return new WaitForSeconds(timeBeforeJump);
-        transform.DOMove(myTransform.position + length * (target.position - myTransform.position).normalized, speed).OnComplete(()=>SetDoingAction(false)); ;
+        transform.DOMove(transform.position + length * (player.transform.position - transform.position).normalized, speed).OnComplete(()=>SetDoingAction(false)); ;
 
     }
 
@@ -64,14 +59,19 @@ public class Monster : MonoBehaviour {
 
     }
 
-    public void PlayerInRange()
+    public void PlayerInRange(Player player)
     {
+
         playerInRange = true;
+        this.player = player;
+    
     }
     
-    public void PlayerOutRange()
+    public void PlayerOutRange(Player player)
     {
         playerInRange = false;
+        this.player = player;
+
     }
 
 } // Monster
