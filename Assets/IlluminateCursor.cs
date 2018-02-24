@@ -6,14 +6,6 @@ public class IlluminateCursor : MonoBehaviour {
 
     public bool allowCloseIlluminate = true;
 
-    private Transform playerTransform;
-
-	// Use this for initialization
-	void Start ()
-    {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-    }
-	
 	// Update is called once per frame
 	void Update () {
         if (allowCloseIlluminate)
@@ -22,16 +14,16 @@ public class IlluminateCursor : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Vector3 toCursor = (hit.point - playerTransform.position);
+                Vector3 toCursor = (hit.point - transform.position);
                 //Debug.Log(Vector3.Angle(playerTransform.forward, toCursor));
-                transform.rotation = Quaternion.LookRotation(toCursor, playerTransform.forward);
+                transform.rotation = Quaternion.LookRotation(toCursor, transform.forward);
             }
         }
         else
         {
-            Vector3 toCursor = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - playerTransform.position);
+            Vector3 toCursor = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
             //Debug.Log(Vector3.Angle(playerTransform.forward, toCursor));
-            transform.rotation = Quaternion.LookRotation(toCursor, playerTransform.forward);
+            transform.rotation = Quaternion.LookRotation(toCursor, transform.forward);
         }
     }
 }
