@@ -107,9 +107,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b99fa5c43cc234fada121ee92194b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffectPrefab: {fileID: 1714808511067816, guid: 046deb644ff9e1d46bc581e094413346,
+    type: 2}
   damage: 2
   length: 4
-  duration: 0.5
+  duration: 0.3
+  fadeStart: 0.6
 --- !u!212 &212682680799897482
 SpriteRenderer:
   m_ObjectHideFlags: 1
