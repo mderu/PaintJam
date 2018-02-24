@@ -1,77 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
-public class Monster : MonoBehaviour {
+public abstract class Monster : MonoBehaviour
+{
+    public int maxHealth;
+    protected int currentHealth;
+
+    public int damage;
 
     public float speed;
-    //public float stoppingDistance;
-    public float timeBeforeJump;
 
     [HideInInspector]
     public bool playerInRange;
-    private bool doingAction;
+    protected bool doingAction;
 
-    public float length;
-    private Player player;
+    protected Player player;
 
     private void Awake()
     {
+        currentHealth = maxHealth;
         playerInRange = false;
         doingAction = false;
     }
 
-    // Use this for initialization
-    void Start () {
-    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (playerInRange && !doingAction)
+    void Start()
+    {
+        player = Player.instance;
+    }
+
+    public virtual void DoDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
-            Lunge();
+            Die();
         }
-
     }
 
-    public void Lunge()
+    public virtual void Die()
     {
-        StartCoroutine(DoLunge());
+        // TODO: do die stuff
+        Destroy(gameObject);
     }
 
-    public IEnumerator DoLunge()
+    public void PlayerInRange()
     {
-        SetDoingAction(true);
-        yield return new WaitForSeconds(timeBeforeJump);
-        transform.DOMove(transform.position + length * (player.transform.position - transform.position).normalized, speed).OnComplete(()=>SetDoingAction(false)); ;
-
-    }
-
-    private void SetDoingAction(bool var)
-    {
-        doingAction = var;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-    }
-
-    public void PlayerInRange(Player player)
-    {
-
         playerInRange = true;
-        this.player = player;
-    
     }
     
-    public void PlayerOutRange(Player player)
+    public void PlayerOutRange()
     {
         playerInRange = false;
-        this.player = player;
+    }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            player.DoDamage(damage);
+        }
     }
 
 } // Monster

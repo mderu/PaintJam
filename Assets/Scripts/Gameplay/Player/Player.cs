@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
+
     public float maxShine = 100f;
 
     [SerializeField]
@@ -14,7 +21,7 @@ public class Player : MonoBehaviour
 
         set
         {
-            if (value < 0)
+            if (value <= 0)
             {
                 Die();
             }
@@ -25,5 +32,11 @@ public class Player : MonoBehaviour
     void Die()
     {
         // TODO : do die stuff
+        Destroy(gameObject);
+    }
+
+    public void DoDamage(float damage)
+    {
+        shine -= damage;
     }
 }

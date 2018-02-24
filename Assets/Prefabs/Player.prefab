@@ -20,11 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4462964899381480}
   - component: {fileID: 33377293674568564}
-  - component: {fileID: 65347594127404126}
   - component: {fileID: 23356708940589546}
   - component: {fileID: 114638851735151348}
-  - component: {fileID: 114955713557522416}
   - component: {fileID: 114414324346871818}
+  - component: {fileID: 58915916424559406}
+  - component: {fileID: 114288818058776564}
+  - component: {fileID: 114654269598455016}
+  - component: {fileID: 50957296135869028}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -86,18 +88,54 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1404134114084768}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65347594127404126
-BoxCollider:
+--- !u!50 &50957296135869028
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1404134114084768}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58915916424559406
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404134114084768}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.5
+--- !u!114 &114288818058776564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404134114084768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e18a114cc1bd7459cd2b50cb4c4134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ability0: {fileID: 114654269598455016}
+  ability1: {fileID: 0}
 --- !u!114 &114414324346871818
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxShine: 100
   _shine: 10
---- !u!114 &114955713557522416
+--- !u!114 &114654269598455016
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -131,10 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1404134114084768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89b99fa5c43cc234fada121ee92194b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 65e780baf01933a499d726b9ba22990f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 1159963617262482, guid: 24767e6b1c2b1a540ad53002a631eb74,
-    type: 2}
-  length: 6
-  duration: 0.5
+  shotPrefab: {fileID: 1159963617262482, guid: 24767e6b1c2b1a540ad53002a631eb74, type: 2}

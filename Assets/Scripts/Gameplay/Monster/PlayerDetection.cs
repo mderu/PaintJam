@@ -4,36 +4,21 @@ using UnityEngine;
 
 public class PlayerDetection: MonoBehaviour
 {
-
     public Monster member;
-    
-    // Use this for initialization
-    void Start()
-    {
-    
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (1 << collision.gameObject.layer == LayerMask.GetMask("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            Debug.Log("[pp[");
-            member.PlayerInRange(collision.GetComponent<Player>());
+            member.PlayerInRange();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(1 << collision.gameObject.layer == LayerMask.GetMask("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            member.PlayerOutRange(collision.GetComponent<Player>());
-
+            member.PlayerOutRange();
         }
     }
 
