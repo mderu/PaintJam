@@ -5,11 +5,26 @@ using DG.Tweening;
 
 public class BasicShot : MonoBehaviour
 {
+    SpriteRenderer sprite;
+
+    public GameObject hitEffectPrefab;
     public int damage;
     public float length;
     public float duration;
+    [Range(0f, 1f)]
+    public float fadeStart;
 
-    public IEnumerator Shoot(Player player)
+    void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
+
+    public void Shoot(Player player)
+    {
+        StartCoroutine(DoShoot(player));
+    }
+
+    public IEnumerator DoShoot(Player player)
     {
         Vector2 toCursor = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)player.transform.position).normalized;
 
@@ -17,8 +32,20 @@ public class BasicShot : MonoBehaviour
 
         Tween myTween = transform.DOMove((Vector2)player.transform.position + length * toCursor, duration);
 
-        yield return myTween.WaitForCompletion();
+        yield return myTween.WaitForStart();
 
+        while (myTween.IsActive())
+        {
+            if (myTween.ElapsedPercentage() > fadeStart)
+            {
+                Color newColor = sprite.color;
+                newColor.a = Mathf.Lerp(1f, 0f, (myTween.ElapsedPercentage() - fadeStart) / (1 - fadeStart));
+                sprite.color = newColor;
+            }
+            yield return null;
+        }
+
+        //yield return myTween.WaitForCompletion();
         Destroy(gameObject);
     }
 
@@ -27,6 +54,8 @@ public class BasicShot : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             collision.GetComponent<Monster>().DoDamage(damage);
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
