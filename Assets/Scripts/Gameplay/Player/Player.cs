@@ -12,8 +12,9 @@ public class Player : MonoBehaviour
     }
 
     public float maxShine = 100f;
+    public float minNormalizedShine;
 
-    [SerializeField]
+    [SerializeField, Range(0f, 100f)]
     float _shine = 10f;
     public float shine
     {
@@ -26,6 +27,14 @@ public class Player : MonoBehaviour
                 Die();
             }
             _shine = Mathf.Clamp(value, 0, maxShine);
+        }
+    }
+
+    public float normalizedShine
+    {
+        get
+        {
+            return Mathf.Clamp(_shine / maxShine, minNormalizedShine, 1f);
         }
     }
 
