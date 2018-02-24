@@ -175,7 +175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &250911630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,12 +190,19 @@ MonoBehaviour:
   maxHealth: 10
   damage: 20
   playerInRange: 0
+  sprite: {fileID: 0}
   lightOrbPrefab: {fileID: 1226206735285066, guid: dea9ffbeb5db7564a840344ff60d11ce,
     type: 2}
   lungeCooldown: 1
   timeBeforeJump: 0.5
   lungeDuration: 1.5
   length: 3
+  easeCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!50 &250911631
 Rigidbody2D:
   serializedVersion: 4
