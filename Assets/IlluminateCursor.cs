@@ -22,7 +22,6 @@ public class IlluminateCursor : MonoBehaviour {
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.point + ", " + playerTransform.position);
                 Vector3 toCursor = (hit.point - playerTransform.position);
                 //Debug.Log(Vector3.Angle(playerTransform.forward, toCursor));
                 transform.rotation = Quaternion.LookRotation(toCursor, playerTransform.forward);
@@ -30,7 +29,6 @@ public class IlluminateCursor : MonoBehaviour {
         }
         else
         {
-            Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition) + ", " + playerTransform.position);
             Vector3 toCursor = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - playerTransform.position);
             //Debug.Log(Vector3.Angle(playerTransform.forward, toCursor));
             transform.rotation = Quaternion.LookRotation(toCursor, playerTransform.forward);
