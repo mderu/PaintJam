@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Frog.unity
-  isLoaded: 1
-  isActive: 1
