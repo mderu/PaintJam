@@ -14,19 +14,17 @@ public abstract class Monster : MonoBehaviour
     protected bool doingAction;
 
     protected Player player;
+    protected Animator anim;
 
     public GameObject lightOrbPrefab;
-
-    private void Awake()
-    {
-        currentHealth = maxHealth;
-        playerInRange = false;
-        doingAction = false;
-    }
 
     void Start()
     {
         player = Player.instance;
+        anim = GetComponent<Animator>();
+        currentHealth = maxHealth;
+        playerInRange = false;
+        doingAction = false;
     }
 
     public virtual void DoDamage(int damage)
