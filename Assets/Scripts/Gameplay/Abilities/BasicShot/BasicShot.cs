@@ -56,7 +56,7 @@ public class BasicShot : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             collision.GetComponent<Monster>().DoDamage(damage);
-            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.LookRotation(collision.transform.position - Player.instance.transform.position));
             Destroy(gameObject);
         }
     }
