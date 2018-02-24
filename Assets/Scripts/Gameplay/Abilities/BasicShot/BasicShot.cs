@@ -13,6 +13,8 @@ public class BasicShot : MonoBehaviour
     {
         Vector2 toCursor = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)player.transform.position).normalized;
 
+        transform.SetPositionAndRotation(player.transform.position, Quaternion.LookRotation(Vector3.forward, toCursor));
+
         Tween myTween = transform.DOMove((Vector2)player.transform.position + length * toCursor, duration);
 
         yield return myTween.WaitForCompletion();

@@ -10,7 +10,7 @@ public class BasicShotAbility : Ability
     {
         if (canActivate)
         {
-            BasicShot shot = Instantiate(shotPrefab, Player.instance.transform.position, Quaternion.identity).GetComponent<BasicShot>();
+            BasicShot shot = Instantiate(shotPrefab).GetComponent<BasicShot>();
             StartCoroutine(shot.Shoot(Player.instance));
             StartCoroutine(Cooldown());
         }

@@ -24,7 +24,6 @@ public abstract class Monster : MonoBehaviour
     {
         player = Player.instance;
         anim = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
         playerInRange = false;
         doingAction = false;
