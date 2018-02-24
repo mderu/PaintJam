@@ -7,7 +7,7 @@ public class Frog : Monster
 {
     //public float stoppingDistance;
     public float timeBeforeJump;
-
+    public float speed;
     public float length;
 
     void Update()

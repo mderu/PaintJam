@@ -146,12 +146,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   damage: 20
-  speed: 2
   playerInRange: 0
   lightOrbPrefab: {fileID: 1226206735285066, guid: dea9ffbeb5db7564a840344ff60d11ce,
     type: 2}
   timeBeforeJump: 1
-  length: 2
+  speed: 1.5
+  length: 3
 --- !u!50 &250911631
 Rigidbody2D:
   serializedVersion: 4
@@ -241,8 +241,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 250911629}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1727, y: 3.5736, z: 0}
-  m_LocalScale: {x: 5.4425354, y: 5.364375, z: 1}
+  m_LocalPosition: {x: -0.3994, y: 3.3439, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 1854184619}
   m_Father: {fileID: 0}

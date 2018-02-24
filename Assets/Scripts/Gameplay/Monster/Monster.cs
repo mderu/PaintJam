@@ -9,8 +9,6 @@ public abstract class Monster : MonoBehaviour
 
     public int damage;
 
-    public float speed;
-
     [HideInInspector]
     public bool playerInRange;
     protected bool doingAction;
