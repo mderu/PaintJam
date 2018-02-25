@@ -8,6 +8,8 @@ public class PlayerLight : MonoBehaviour
     Player player;
     public float maxRange;
     public float maxIntensity;
+    public float minHeight;
+    public float maxHeight;
 
     void Start()
     {
@@ -20,5 +22,8 @@ public class PlayerLight : MonoBehaviour
         float normalizedShine = player.normalizedShine;
         light.intensity = normalizedShine * maxIntensity;
         light.range = normalizedShine * maxRange;
+        Vector3 newPosition = transform.position;
+        newPosition.z = minHeight + normalizedShine * (maxHeight - minHeight);
+        transform.position = newPosition;
     }
 }

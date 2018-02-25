@@ -22,14 +22,14 @@ public class Plant : Monster
     {
         if (playerInRange)
         {
-            Debug.Log("Player in range");
+            //Debug.Log("Player in range");
             if (state == State.WaitingToShoot)
             {
                 sprite.flipX = player.transform.position.x > transform.position.x;
             }
             if (!doingAction)
             {
-                Debug.Log("Firing");
+                //Debug.Log("Firing");
                 doingAction = true;
                 ChangeState(State.WaitingToShoot);
                 GetComponent<Animator>().SetTrigger("attack");

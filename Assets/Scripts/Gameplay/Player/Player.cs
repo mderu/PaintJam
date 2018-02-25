@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Knockback knockback;
+    SpriteRenderer sprite;
 
     public static Player instance;
 
@@ -16,10 +17,14 @@ public class Player : MonoBehaviour
     void Start()
     {
         knockback = GetComponent<Knockback>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public float maxShine = 100f;
     public float minNormalizedShine;
+    public float minScale;
+    public float maxScale;
+    public Color dyingColor;
 
     [SerializeField, Range(0f, 100f)]
     float _shine = 10f;
@@ -34,6 +39,9 @@ public class Player : MonoBehaviour
                 Die();
             }
             _shine = Mathf.Clamp(value, 0, maxShine);
+
+            float newScale = minScale + normalizedShine * (maxScale - minScale);
+            transform.localScale = new Vector3(newScale, newScale, 1f);
         }
     }
 
@@ -41,6 +49,15 @@ public class Player : MonoBehaviour
     {
         get
         {
+            if (_shine / maxShine < minNormalizedShine)
+            {
+                sprite.color = Color.red;
+            }
+            else
+            {
+                sprite.color = Color.white;
+            }
+
             return Mathf.Clamp(_shine / maxShine, minNormalizedShine, 1f);
         }
     }

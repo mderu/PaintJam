@@ -2,26 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Npc : MonoBehaviour {
-
-
-
-    [HideInInspector]
-    protected Rigidbody2D rigidBody;
-    
-    protected Animator anim;
-    [SerializeField]
-    protected SpriteRenderer sprite;
-
+public class Npc : MonoBehaviour
+{
     public GameObject enemy;
-
-    protected virtual void Start()
-    {
-        anim = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody2D>();
-    }
-
-
 
     public virtual void Die()
     {
@@ -34,8 +17,18 @@ public class Npc : MonoBehaviour {
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "DarkOrb")
+        {
+            StartCoroutine(DieDelayed());
+        }
+    }
+
+    IEnumerator DieDelayed()
+    {
+        yield return new WaitForSeconds(2f);
+
         Die();
     }
 }
