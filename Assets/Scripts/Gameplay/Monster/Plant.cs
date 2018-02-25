@@ -22,14 +22,17 @@ public class Plant : Monster
     {
         if (playerInRange)
         {
+            Debug.Log("Player in range");
             if (state == State.WaitingToShoot)
             {
                 sprite.flipX = player.transform.position.x > transform.position.x;
             }
-
             if (!doingAction)
             {
-                StartCoroutine(Shoot());
+                Debug.Log("Firing");
+                doingAction = true;
+                ChangeState(State.WaitingToShoot);
+                GetComponent<Animator>().SetTrigger("attack");
             }
         }
     }
@@ -37,14 +40,15 @@ public class Plant : Monster
     void ChangeState(State newState)
     {
         state = newState;
-        anim.SetInteger("State", (int)state);
     }
 
-    IEnumerator Shoot()
+    void Shoot()
     {
-        doingAction = true;
-        ChangeState(State.WaitingToShoot);
-        yield return new WaitForSeconds(timeBeforeShot);
+        StartCoroutine(ShootSequence());
+    }
+
+    IEnumerator ShootSequence()
+    {
         ChangeState(State.Shooting);
         GameObject projectile = Instantiate(projectilePrefab);
         projectile.GetComponent<EnemyShot>().Shoot(this);

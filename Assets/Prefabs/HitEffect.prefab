@@ -693,6 +693,12 @@ ParticleSystem:
           outSlope: -0.15125751
           tangentMode: 0
         - serializedVersion: 2
+          time: 0.13419847
+          value: 0
+          inSlope: -0.13895333
+          outSlope: -0.13895333
+          tangentMode: 0
+        - serializedVersion: 2
           time: 1
           value: 0
           inSlope: 0
@@ -1040,8 +1046,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 3470
-        atime2: 11372
+        atime1: 2120
+        atime2: 7132
         atime3: 65535
         atime4: 0
         atime5: 0

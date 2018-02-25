@@ -29,6 +29,7 @@ public class EnemyShot : MonoBehaviour
 
     public IEnumerator DoShoot(Monster monster)
     {
+        if (!Player.instance) { yield break; }
         Transform player = Player.instance.transform;
         Transform monsterTransform = monster.transform;
 
