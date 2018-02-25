@@ -1,13 +1,12 @@
 fileFormatVersion: 2
-guid: dcf784633e9b1ef44ac97583b5c6b4c2
-timeCreated: 1519512639
+guid: 6cb13b4b20dede9428a0f23f93ac09d1
+timeCreated: 1519523884
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ground_tileset_0
-    21300002: ground_tileset_1
-    21300004: ground_tileset_2
-    21300006: ground_tileset_3
+    21300000: flower_idle_0
+    21300002: flower_idle_1
+    21300004: flower_idle_1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -94,57 +93,29 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ground_tileset_0
+      name: flower_idle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 2
+        y: 65
+        width: 54
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: ground_tileset_1
+      name: flower_idle_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 2
+        y: 1
+        width: 54
+        height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ground_tileset_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: ground_tileset_3
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
