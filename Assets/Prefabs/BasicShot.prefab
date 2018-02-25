@@ -113,6 +113,8 @@ MonoBehaviour:
   length: 4
   duration: 0.3
   fadeStart: 0.6
+  lightOrbPrefab: {fileID: 1226206735285066, guid: dea9ffbeb5db7564a840344ff60d11ce,
+    type: 2}
 --- !u!212 &212682680799897482
 SpriteRenderer:
   m_ObjectHideFlags: 1

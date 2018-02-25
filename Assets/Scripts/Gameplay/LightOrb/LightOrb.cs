@@ -12,12 +12,15 @@ public class LightOrb : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("test");
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.gameObject.GetComponent<Player>())
         {
             collision.gameObject.GetComponent<Player>().shine += shine;
             GetComponent<Collider2D>().enabled = false;
             magnetizeTo = collision.transform;
             StartCoroutine(Magnetize());
+            Debug.Log("test");
         }
     }
 

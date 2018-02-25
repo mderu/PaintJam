@@ -15,6 +15,8 @@ public class BasicShot : MonoBehaviour
     [Range(0f, 1f)]
     public float fadeStart;
 
+    public GameObject lightOrbPrefab;
+
     void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -51,6 +53,7 @@ public class BasicShot : MonoBehaviour
 
         //yield return myTween.WaitForCompletion();
         Destroy(gameObject);
+        Instantiate(lightOrbPrefab, transform.position, Quaternion.identity);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -59,7 +62,7 @@ public class BasicShot : MonoBehaviour
         {
             collision.gameObject.GetComponent<Monster>().DoDamage(transform, damage);
             Instantiate(hitEffectPrefab, transform.position, Quaternion.LookRotation(collision.transform.position - Player.instance.transform.position));
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }

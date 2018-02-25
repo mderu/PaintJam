@@ -43,7 +43,10 @@ public abstract class Monster : MonoBehaviour
     public virtual void Die()
     {
         // TODO: do die stuff
-        Instantiate(lightOrbPrefab, transform.position, Quaternion.identity);
+
+
+        //Change to green frog fade
+        //Instantiate(lightOrbPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 
