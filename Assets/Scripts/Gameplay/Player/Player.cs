@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    Knockback knockback;
+
     public static Player instance;
 
     void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
+        knockback = GetComponent<Knockback>();
     }
 
     public float maxShine = 100f;
@@ -44,8 +51,17 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void DoDamage(float damage)
+    public void DoDamage(Transform damager, float damage)
     {
         shine -= damage;
+        StartCoroutine(DisableMovement());
+        knockback.DoKnockback(transform.position - damager.position);
+    }
+
+    IEnumerator DisableMovement()
+    {
+        GetComponent<PlayerMovement>().enabled = false;
+        yield return new WaitForSeconds(knockback.duration);
+        GetComponent<PlayerMovement>().enabled = true;
     }
 }

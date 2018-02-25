@@ -54,6 +54,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4495649716000446}
   - component: {fileID: 212665372157021934}
+  - component: {fileID: 58242700795880028}
+  - component: {fileID: 114340198068252794}
   m_Layer: 9
   m_Name: FrogSprite
   m_TagString: Untagged
@@ -71,7 +73,6 @@ GameObject:
   - component: {fileID: 4773469693056838}
   - component: {fileID: 58230282235895808}
   - component: {fileID: 114235614900302898}
-  - component: {fileID: 50044065358649396}
   m_Layer: 0
   m_Name: Player Detection
   m_TagString: Untagged
@@ -89,9 +90,9 @@ GameObject:
   - component: {fileID: 4764356644376394}
   - component: {fileID: 212003012656689382}
   - component: {fileID: 50160235990573340}
-  - component: {fileID: 58234930680073504}
   - component: {fileID: 114212223088609880}
   - component: {fileID: 95972829626862682}
+  - component: {fileID: 114573231222060984}
   m_Layer: 9
   m_Name: Frog
   m_TagString: Untagged
@@ -209,26 +210,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1375629003060646}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!50 &50044065358649396
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1620171633447898}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!50 &50160235990573340
 Rigidbody2D:
   serializedVersion: 4
@@ -241,14 +222,14 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!58 &58230282235895808
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -264,16 +245,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
---- !u!58 &58234930680073504
+--- !u!58 &58242700795880028
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1692113477047704}
+  m_GameObject: {fileID: 1539099147666806}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -308,7 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  damage: 20
+  damage: 10
   playerInRange: 0
   sprite: {fileID: 212665372157021934}
   lightOrbPrefab: {fileID: 1226206735285066, guid: dea9ffbeb5db7564a840344ff60d11ce,
@@ -347,6 +328,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   member: {fileID: 114212223088609880}
+--- !u!114 &114340198068252794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1539099147666806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7972b5829d0d398479e6c15f0b7c8d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 114212223088609880}
+--- !u!114 &114573231222060984
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1692113477047704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9236cfaf7dc424fa1a60851fd2fa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 2
+  duration: 1
 --- !u!135 &135130325501340920
 SphereCollider:
   m_ObjectHideFlags: 1

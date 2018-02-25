@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 50957296135869028}
   - component: {fileID: 212265304874725240}
   - component: {fileID: 95963117114736118}
+  - component: {fileID: 114111383963897710}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -123,14 +124,14 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &58915916424559406
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -140,7 +141,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -199,6 +200,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114111383963897710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404134114084768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce9236cfaf7dc424fa1a60851fd2fa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 2
+  duration: 1
 --- !u!114 &114157619057073282
 MonoBehaviour:
   m_ObjectHideFlags: 1

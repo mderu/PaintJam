@@ -6,6 +6,7 @@ using DG.Tweening;
 public class EnemyShot : MonoBehaviour
 {
     SpriteRenderer sprite;
+    Rigidbody2D rigidBody;
 
     public GameObject hitEffectPrefab;
     int damage;
@@ -14,9 +15,10 @@ public class EnemyShot : MonoBehaviour
     [Range(0f, 1f)]
     public float fadeStart;
 
-    void Start()
+    void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     public void Shoot(Monster monster)
@@ -34,8 +36,8 @@ public class EnemyShot : MonoBehaviour
 
         transform.SetPositionAndRotation(monsterTransform.position, Quaternion.LookRotation(Vector3.forward, toPlayer));
 
-        Tween myTween = transform.DOMove((Vector2)player.transform.position + length * toPlayer, duration);
-
+        Tween myTween = rigidBody.DOMove((Vector2)monsterTransform.position + length * toPlayer, duration);
+ 
         yield return myTween.WaitForStart();
 
         while (myTween.IsActive())
@@ -53,11 +55,11 @@ public class EnemyShot : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.gameObject.GetComponent<Player>())
         {
-            collision.GetComponent<Player>().DoDamage(damage);
+            collision.gameObject.GetComponent<Player>().DoDamage(transform, damage);
             Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

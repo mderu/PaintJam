@@ -12,6 +12,7 @@ public abstract class Monster : MonoBehaviour
     [HideInInspector]
     public bool playerInRange;
     protected bool doingAction;
+    protected Rigidbody2D rigidBody;
 
     protected Player player;
     protected Animator anim;
@@ -27,9 +28,10 @@ public abstract class Monster : MonoBehaviour
         currentHealth = maxHealth;
         playerInRange = false;
         doingAction = false;
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    public virtual void DoDamage(int damage)
+    public virtual void DoDamage(Transform damager, int damage)
     {
         currentHealth -= damage;
         if (currentHealth <= 0)
@@ -55,11 +57,11 @@ public abstract class Monster : MonoBehaviour
         playerInRange = false;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.gameObject.GetComponent<Player>())
         {
-            player.DoDamage(damage);
+            player.DoDamage(transform, damage);
         }
     }
 

@@ -10,11 +10,11 @@ public class LightOrb : MonoBehaviour
     private Vector3 startLocation;
     private float timeLeft = 1.0f;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player") && collision.gameObject.GetComponent<Player>())
         {
-            collision.GetComponent<Player>().shine += shine;
+            collision.gameObject.GetComponent<Player>().shine += shine;
             GetComponent<Collider2D>().enabled = false;
             magnetizeTo = collision.transform;
             StartCoroutine(Magnetize());

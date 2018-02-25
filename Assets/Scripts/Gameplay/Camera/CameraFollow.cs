@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour
     Transform player;
 
     public Vector3 offset;
+    public float speed;
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class CameraFollow : MonoBehaviour
     {
         if (player)
         {
-            transform.position = player.position + offset;
+            transform.position = Vector3.Lerp(transform.position, player.position + offset, speed * Time.deltaTime);
         }
     }
 }

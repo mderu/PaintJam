@@ -7,6 +7,9 @@ public class Frog : Monster
 {
     enum State { Idle, WaitingToLunge, Lunging }
 
+    Knockback knockback;
+    Tween lungeTween;
+
     //public float stoppingDistance;
     public float lungeCooldown;
     public float timeBeforeJump;
@@ -16,6 +19,12 @@ public class Frog : Monster
     public AnimationCurve easeCurve;
 
     State state = State.Idle;
+
+    protected override void Start()
+    {
+        base.Start();
+        knockback = GetComponent<Knockback>();
+    }
 
     void Update()
     {
@@ -33,6 +42,16 @@ public class Frog : Monster
         }
     }
 
+    public override void DoDamage(Transform damager, int damage)
+    {
+        base.DoDamage(damager, damage);
+        if (lungeTween != null)
+        {
+            lungeTween.Kill();
+        }
+        knockback.DoKnockback(GetComponentInChildren<MonsterDamager>().transform.position - damager.position);
+    }
+
     void ChangeState(State newState)
     {
         state = newState;
@@ -44,10 +63,11 @@ public class Frog : Monster
         doingAction = true;
         ChangeState(State.WaitingToLunge);
         yield return new WaitForSeconds(timeBeforeJump);
-        Tween myTween = transform.DOMove(transform.position + length * (player.transform.position - transform.position).normalized, lungeDuration);
-        myTween.SetEase(easeCurve);
+        lungeTween = rigidBody.DOMove(transform.position + length * (player.transform.position - transform.position).normalized, lungeDuration);
+        lungeTween.SetEase(easeCurve);
         ChangeState(State.Lunging);
-        yield return myTween.WaitForCompletion();
+        yield return lungeTween.WaitForCompletion();
+        lungeTween = null;
         ChangeState(State.Idle);
         yield return new WaitForSeconds(lungeCooldown);
         doingAction = false;

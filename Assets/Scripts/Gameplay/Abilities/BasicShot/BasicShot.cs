@@ -6,6 +6,7 @@ using DG.Tweening;
 public class BasicShot : MonoBehaviour
 {
     SpriteRenderer sprite;
+    Rigidbody2D rigidBody;
 
     public GameObject hitEffectPrefab;
     public int damage;
@@ -14,9 +15,10 @@ public class BasicShot : MonoBehaviour
     [Range(0f, 1f)]
     public float fadeStart;
 
-    void Start()
+    void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     public void Shoot()
@@ -51,11 +53,11 @@ public class BasicShot : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy") && collision.gameObject.GetComponent<Monster>())
         {
-            collision.GetComponent<Monster>().DoDamage(damage);
+            collision.gameObject.GetComponent<Monster>().DoDamage(transform, damage);
             Instantiate(hitEffectPrefab, transform.position, Quaternion.LookRotation(collision.transform.position - Player.instance.transform.position));
             Destroy(gameObject);
         }

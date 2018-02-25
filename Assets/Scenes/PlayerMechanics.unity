@@ -152,7 +152,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 50044065358649396, guid: 9ccd3f16e2dd366499597d62ec0c9094, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 9ccd3f16e2dd366499597d62ec0c9094, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &335568965
@@ -436,6 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 0, z: -10}
+  speed: 5
 --- !u!1 &2081771007
 GameObject:
   m_ObjectHideFlags: 0
