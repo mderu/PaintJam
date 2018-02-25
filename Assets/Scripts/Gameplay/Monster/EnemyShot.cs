@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class BasicShot : MonoBehaviour
+public class EnemyShot : MonoBehaviour
 {
     SpriteRenderer sprite;
 
     public GameObject hitEffectPrefab;
-    public int damage;
+    int damage;
     public float length;
     public float duration;
     [Range(0f, 1f)]
@@ -19,20 +19,22 @@ public class BasicShot : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    public void Shoot()
+    public void Shoot(Monster monster)
     {
-        StartCoroutine(DoShoot());
+        damage = monster.damage;
+        StartCoroutine(DoShoot(monster));
     }
 
-    public IEnumerator DoShoot()
+    public IEnumerator DoShoot(Monster monster)
     {
         Transform player = Player.instance.transform;
+        Transform monsterTransform = monster.transform;
 
-        Vector2 toCursor = ((Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)player.position).normalized;
+        Vector2 toPlayer = (player.position - monsterTransform.position).normalized;
 
-        transform.SetPositionAndRotation(player.position, Quaternion.LookRotation(Vector3.forward, toCursor));
+        transform.SetPositionAndRotation(monsterTransform.position, Quaternion.LookRotation(Vector3.forward, toPlayer));
 
-        Tween myTween = transform.DOMove((Vector2)player.position + length * toCursor, duration);
+        Tween myTween = transform.DOMove((Vector2)player.transform.position + length * toPlayer, duration);
 
         yield return myTween.WaitForStart();
 
@@ -53,10 +55,10 @@ public class BasicShot : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            collision.GetComponent<Monster>().DoDamage(damage);
-            Instantiate(hitEffectPrefab, transform.position, Quaternion.LookRotation(collision.transform.position - Player.instance.transform.position));
+            collision.GetComponent<Player>().DoDamage(damage);
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
